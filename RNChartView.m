@@ -251,7 +251,7 @@
 
 - (CGFloat)minVerticalBound
 {
-  return MIN(self.min, 0);
+  return self.min;
 }
 
 
@@ -336,18 +336,18 @@
 {
   if(value <= 0)
     return 0;
-  
+
   // We consider a round number the following by 0.5 step instead of true round number (with step of 1)
   CGFloat logValue = log10f(value);
-  CGFloat scale = powf(10, floorf(logValue));
+  CGFloat scale = powf(2, floorf(logValue));
   CGFloat n = ceilf(value / scale * 4);
-  
+
   int tmp = (int)(n) % gridStep;
   
   if(tmp != 0) {
     n += gridStep - tmp;
   }
-  
+
   return n * scale / 4.0f;
 }
 
